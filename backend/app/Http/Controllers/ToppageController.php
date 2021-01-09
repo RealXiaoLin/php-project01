@@ -10,4 +10,9 @@ class ToppageController extends Controller
     {
       return view('toppages.index');
     }
+
+    public function workbook()
+    {
+      return view('toppages.workbook');
+    }
 }
