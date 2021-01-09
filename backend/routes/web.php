@@ -27,6 +27,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 use App\Http\Controllers\ToppageController;
 Route::get('/index',  [ToppageController::class, 'index']);
+Route::get('/workbook',  [ToppageController::class, 'workbook']);
 
 use App\Http\Controllers\QuestionController;
 Route::resource('questions', QuestionController::class);

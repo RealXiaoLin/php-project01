@@ -1,22 +1,22 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-  <div class="top-tab row">
+  <div class="top-tab row mb-4">
     <div class="col-12">
       <ul class="nav nav-pills nav-fill">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#">TOP</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">問題集</a>
+          <a class="nav-link" href="http://localhost:10080/workbook">問題集</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">その他</a>
+          <a class="nav-link" href="#">ユーザー情報</a>
         </li>
       </ul>
     </div>
   </div>
-  <div class="row top-descriptions mt-4">
+  <div class="row top-descriptions">
     <div class="col-8 mr-1 border border-3">
       <div class="row">
         <div class="col-12">
