@@ -5,13 +5,13 @@
     <div class="col-12">
       <ul class="nav nav-pills nav-fill">
         <li class="nav-item">
-          <a class="nav-link" href="http://localhost:10080/index">TOP</a>
+          <a class="nav-link" href="http://localhost:10080">TOP</a>
         </li>
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#">問題集</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">ユーザー情報</a>
+          <a class="nav-link" href="http://localhost:10080/mypage">ユーザー情報</a>
         </li>
       </ul>
     </div>
