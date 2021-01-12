@@ -30,7 +30,7 @@ Route::get('/',  [ToppageController::class, 'index']);
 Route::get('/workbook',  [ToppageController::class, 'workbook']);
 
 use App\Http\Controllers\QuestionController;
-Route::get('/question',  [QuestionController::class, 'index']);
+Route::resource('/question',  QuestionController::class);
 
 use App\Http\Controllers\MypageController;
 Route::get('/mypage',  [MypageController::class, 'index']);
