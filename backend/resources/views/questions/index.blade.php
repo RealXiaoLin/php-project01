@@ -10,7 +10,7 @@
   </div>
   <div class="question row">
     <div class="col-8 mx-auto border">
-      <div class="row  question-num">
+      <div class="row question-num">
         <div class="col-12 mt-4">
           問題番号
         </div>
@@ -46,12 +46,13 @@
           </ul>
         </div>
       </div>
-      <div class="question-answer row p-3">
+      <div class="answer row p-3">
+        <p>回答</p>
         <div class="col-12">
-          回答
+           あなたはソリューションアーキテクトとして、Amazon S3からサーバーに転送するデータ量を削減することで、データ取得処理のレイテンシーを低減しようとしています。 これを実現するには、シンプルなSQLステートメントを使用してAmazon S3オブジェクトのコンテンツをフィルタして、必要なデータのサブセットのみを取得する構成が必要です。この要件を満たすために利用するべきサービスを選択してください。
         </div>
       </div>
-      <div class="question-answer-body row">
+      <div class="answer-body row">
         <div class="col-12 p-5">
           <ul class="list-group list-group-flush">
             <li class="list-group-item">Cras justo odio</li>
