@@ -15,7 +15,7 @@ class CreateQuestionsTable extends Migration
     {
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
-            $table->string('body');
+            $table->string('body',500);
             $table->string('choice_1',100);
             $table->string('choice_2',100);
             $table->string('choice_3',100);
@@ -23,9 +23,6 @@ class CreateQuestionsTable extends Migration
             $table->string('answer_body');
             $table->integer('answer_choice');
             $table->integer('status_num');
-            $table->foreignId('question_workbook_id')->constrained('question_workbooks');
-            $table->foreignId('category_question_id')->constrained('category_questions');
-            $table->timestamps();
         });
     }
 
