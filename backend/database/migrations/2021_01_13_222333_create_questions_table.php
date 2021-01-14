@@ -23,9 +23,6 @@ class CreateQuestionsTable extends Migration
             $table->string('answer_body');
             $table->integer('answer_choice');
             $table->integer('status_num');
-            $table->foreignId('question_workbook_id')->constrained('question_workbooks');
-            $table->foreignId('category_question_id')->constrained('category_questions');
-            $table->timestamps();
         });
     }
 

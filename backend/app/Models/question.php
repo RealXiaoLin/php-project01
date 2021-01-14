@@ -18,21 +18,16 @@ class Question extends Model
         'answer_body',
         'answer_choice',
         'status_num',
-        'question_workbook_id',
-        'category_question_id',
     ];
 
-    public function question_workbooks()
+    public function workbooks()
     {
-        return $this->hasMany(Question_workbooks::class);
+        return $this->belongsToMany('App\Workbook');
     }
 
-    public function category_questions()
+    public function categories()
     {
-        return $this->hasMany(Category_questions::class);
+        return $this->belongsToMany('App\Category');
     }
-
-
-
 
 }

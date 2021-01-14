@@ -5,17 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Workbook extends Model
+class Question_workbook extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'title',
+        'category_id',
+        'question_id',
     ];
-
-    public function questions()
-    {
-        return $this->belongsToMany('App\Question');
-    }
-
 }
