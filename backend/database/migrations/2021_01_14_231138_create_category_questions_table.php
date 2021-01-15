@@ -15,8 +15,8 @@ class CreateCategoryQuestionsTable extends Migration
     {
         Schema::create('category_questions', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('category_id');
-            $table->unsignedInteger('question_id');
+            $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('question_id');
             $table->timestamps();
 
             $table->foreign('category_id')
