@@ -15,9 +15,8 @@ class CreateQuestionWorkbooksTable extends Migration
     {
         Schema::create('question_workbooks', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('workbook_id');
-            $table->unsignedInteger('question_id');
-            $table->primary(['workbook_id', 'question_id']);
+            $table->unsignedBigInteger('workbook_id');
+            $table->unsignedBigInteger('question_id');
             $table->timestamps();
 
             $table->foreign('workbook_id')

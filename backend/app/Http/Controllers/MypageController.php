@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MypageController extends Controller
 {
@@ -13,7 +14,10 @@ class MypageController extends Controller
      */
     public function index()
     {
-      return view('mypages.index');
+      $user = Auth::user();
+      $workbook_url = action([ToppageController::class, 'workbook']);
+      $toppage_url = action([ToppageController::class, 'index']);
+      return view('mypages.index', [ 'user' => $user, 'toppage_url' => $toppage_url, 'workbook_url' => $workbook_url ]);
     }
 
     /**

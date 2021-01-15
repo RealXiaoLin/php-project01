@@ -5,13 +5,13 @@
     <div class="col-12">
       <ul class="nav nav-pills nav-fill">
         <li class="nav-item">
-          <a class="nav-link" href="http://localhost:10080">TOP</a>
+          <a class="nav-link" href={{ $toppage_url }}>TOP</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">問題集</a>
+          <a class="nav-link active" aria-current="page">問題集</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="http://localhost:10080/mypage">ユーザー情報</a>
+          <a class="nav-link" href={{ $mypage_url }}>ユーザー情報</a>
         </li>
       </ul>
     </div>
@@ -23,14 +23,17 @@
       </div>
     </div>
     <div class="Membership-function-tab row m-0">
-      <div class="col-4 border p-2">
+      <div class="col-3 border p-2">
         成績表
       </div>
-      <div class="col-4 border p-2">
+      <div class="col-3 border p-2">
         未回答
       </div>
-      <div class="col-4 border p-2">
+      <div class="col-3 border p-2">
         間違えた問題
+      </div>
+      <div class="col-3 border p-2">
+        問題の登録
       </div>
     </div>
   </div>

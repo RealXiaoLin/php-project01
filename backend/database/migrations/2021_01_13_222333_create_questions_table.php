@@ -23,6 +23,7 @@ class CreateQuestionsTable extends Migration
             $table->string('answer_body');
             $table->integer('answer_choice');
             $table->integer('status_num');
+            $table->timestamps();
         });
     }
 
