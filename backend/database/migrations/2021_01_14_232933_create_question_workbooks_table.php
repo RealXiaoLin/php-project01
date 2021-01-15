@@ -17,7 +17,6 @@ class CreateQuestionWorkbooksTable extends Migration
             $table->id();
             $table->unsignedInteger('workbook_id');
             $table->unsignedInteger('question_id');
-            $table->primary(['workbook_id', 'question_id']);
             $table->timestamps();
 
             $table->foreign('workbook_id')

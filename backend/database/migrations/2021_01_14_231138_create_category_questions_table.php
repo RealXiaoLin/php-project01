@@ -17,7 +17,6 @@ class CreateCategoryQuestionsTable extends Migration
             $table->id();
             $table->unsignedInteger('category_id');
             $table->unsignedInteger('question_id');
-            $table->primary(['category_id', 'question_id']);
             $table->timestamps();
 
             $table->foreign('category_id')
