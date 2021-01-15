@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MypageController extends Controller
 {
@@ -13,7 +14,8 @@ class MypageController extends Controller
      */
     public function index()
     {
-      return view('mypages.index');
+      $user = Auth::user();
+      return view('mypages.index', [ 'user' => $user ]);
     }
 
     /**

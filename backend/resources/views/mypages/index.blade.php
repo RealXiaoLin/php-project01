@@ -22,9 +22,9 @@
     </div>
     <div class="col-10 profile-list">
       <ul class="list-group">
-        <li class="list-group-item">ユーザーネーム</li>
-        <li class="list-group-item">メールアドレス</li>
-        <li class="list-group-item">登録日</li>
+        <li class="list-group-item">ニックネーム：{{ $user->name }}</li>
+        <li class="list-group-item">メールアドレス：{{ $user->email }}</li>
+        <li class="list-group-item">登録日：{{ $user->created_at }}</li>
         <li class="list-group-item">投稿数</li>
         <li class="list-group-item">最終ログイン日</li>
       </ul>
