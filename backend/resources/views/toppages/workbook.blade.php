@@ -33,7 +33,7 @@
         間違えた問題
       </div>
       <div class="col-3 border p-2">
-        問題の登録
+        <a href={{ $question_url }}>問題の登録</a>
       </div>
     </div>
   </div>

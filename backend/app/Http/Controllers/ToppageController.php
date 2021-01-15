@@ -18,6 +18,7 @@ class ToppageController extends Controller
   {
     $mypage_url = action([MypageController::class, 'index']);
     $toppage_url = action([ToppageController::class, 'index']);
-    return view('toppages.workbook', [ 'mypage_url' => $mypage_url, 'toppage_url' => $toppage_url ]);
+    $question_url = action([QuestionController::class, 'create']);
+    return view('toppages.workbook', [ 'mypage_url' => $mypage_url, 'toppage_url' => $toppage_url, 'question_url' => $question_url ]);
   }
 }
