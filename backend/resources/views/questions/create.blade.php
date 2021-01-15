@@ -7,46 +7,46 @@
         @csrf
         <div class="mb-3">
           <p class="bg-dark text-white fw-bold pl-2 pt-2 pb-2 mt-1 mb-0">問題文</p>
-          <textarea name="body" rows="5" class="form-control"></textarea>
+          <textarea name="body" rows="5" class="form-control">{{ old('body') }}</textarea>
           @error('body')
             <div class="alert alert-danger">{{ $message }}</div>
           @enderror
         </div>
         <div class="mb-3">
           <p class="bg-dark text-white fw-bold pl-2 pt-2 pb-2 mt-1 mb-0">選択肢</p>
-          選択肢1<input type="text" name="choice_1" class="form-control">
+          選択肢1<input type="text" name="choice_1" class="form-control" value="{{ old('choice_1') }}">
           @error('choice_1')
             <div class="alert alert-danger">{{ $message }}</div>
           @enderror
         </div>
         <div class="mb-3">
-          選択肢2<input type="text" name="choice_2" class="form-control">
+          選択肢2<input type="text" name="choice_2" class="form-control" value="{{ old('choice_2') }}">
           @error('choice_2')
             <div class="alert alert-danger">{{ $message }}</div>
           @enderror
         </div>
         <div class="mb-3">
-          選択肢3<input type="text" name="choice_3" class="form-control">
+          選択肢3<input type="text" name="choice_3" class="form-control" value="{{ old('choice_3') }}">
           @error('choice_3')
             <div class="alert alert-danger">{{ $message }}</div>
           @enderror
         </div>
         <div class="mb-3">
-          選択肢4<input type="text" name="choice_4" class="form-control">
+          選択肢4<input type="text" name="choice_4" class="form-control" value="{{ old('choice_4') }}">
           @error('choice_4')
             <div class="alert alert-danger">{{ $message }}</div>
           @enderror
         </div>
         <div class="mb-3">
           <p class="bg-dark text-white fw-bold pl-2 pt-2 pb-2 mt-1 mb-0">回答文</p>
-          <textarea name="answer_body" rows="5" class="form-control"></textarea>
+          <textarea name="answer_body" rows="5" class="form-control">{{ old('answer_body') }}</textarea>
           @error('answer_body')
             <div class="alert alert-danger">{{ $message }}</div>
           @enderror
         </div>
         <div class="mb-3">
           <p class="bg-dark text-white fw-bold pl-2 pt-2 pb-2 mt-1 mb-0">正解択</p>
-          <select name="answer_choice" class="form-control">
+          <select name="answer_choice" class="form-control"  value="{{ old('answer_choice') }}">
             <option selected>正解択を選択してください</option>
             <option value="1">選択肢1</option>
             <option value="2">選択肢2</option>
