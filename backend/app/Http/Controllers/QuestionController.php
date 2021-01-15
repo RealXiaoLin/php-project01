@@ -34,7 +34,7 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validateWithBag('question', [
+        $validated = $request->validate([
           'body' => ['bail', 'required', 'max:500'],
           'choice_1' => ['bail', 'required', 'unique:posts', 'max:100'],
           'choice_2' => ['bail', 'required', 'unique:posts', 'max:100'],
