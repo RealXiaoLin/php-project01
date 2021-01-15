@@ -27,10 +27,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 use App\Http\Controllers\ToppageController;
 Route::get('/',  [ToppageController::class, 'index']);
-Route::get('/workbook',  [ToppageController::class, 'workbook']);
+Route::get('/workbook',  [ToppageController::class, 'workbook'])->middleware('auth');
 
 use App\Http\Controllers\QuestionController;
-Route::resource('/question',  QuestionController::class)->middleware('auth');
+Route::resource('/question',  QuestionController::class);
 
 use App\Http\Controllers\MypageController;
-Route::get('/mypage',  [MypageController::class, 'index']);
+Route::get('/mypage',  [MypageController::class, 'index'])->middleware('auth');
