@@ -3,16 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\MypageController;
 
 class ToppageController extends Controller
 {
   public function index()
   {
-    return view('toppages.index');
+    $mypage_url = action([MypageController::class, 'index']);
+    $workbook_url = action([ToppageController::class, 'workbook']);
+    return view('toppages.index', [ 'mypage_url' => $mypage_url, 'workbook_url' => $workbook_url ]);
   }
 
   public function workbook()
   {
-    return view('toppages.workbook');
+    $mypage_url = action([MypageController::class, 'index']);
+    $toppage_url = action([ToppageController::class, 'index']);
+    return view('toppages.workbook', [ 'mypage_url' => $mypage_url, 'toppage_url' => $toppage_url ]);
   }
 }

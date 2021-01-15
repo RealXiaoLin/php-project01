@@ -5,13 +5,13 @@
     <div class="col-12">
       <ul class="nav nav-pills nav-fill">
         <li class="nav-item">
-          <a class="nav-link" href="http://localhost:10080">TOP</a>
+          <a class="nav-link" href={{ $toppage_url }}>TOP</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="http://localhost:10080/workbook">問題集</a>
+          <a class="nav-link" href={{ $workbook_url }}>問題集</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">ユーザー情報</a>
+          <a class="nav-link active" aria-current="page">ユーザー情報</a>
         </li>
       </ul>
     </div>

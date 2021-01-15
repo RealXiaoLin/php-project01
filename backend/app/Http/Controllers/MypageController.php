@@ -15,7 +15,9 @@ class MypageController extends Controller
     public function index()
     {
       $user = Auth::user();
-      return view('mypages.index', [ 'user' => $user ]);
+      $workbook_url = action([ToppageController::class, 'workbook']);
+      $toppage_url = action([ToppageController::class, 'index']);
+      return view('mypages.index', [ 'user' => $user, 'toppage_url' => $toppage_url, 'workbook_url' => $workbook_url ]);
     }
 
     /**
