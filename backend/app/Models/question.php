@@ -18,16 +18,21 @@ class Question extends Model
         'answer_body',
         'answer_choice',
         'status_num',
+        'user_id',
     ];
 
     public function workbooks()
     {
-        return $this->belongsToMany('App\Workbook');
+      return $this->belongsToMany('App\Workbook');
     }
 
     public function categories()
     {
-        return $this->belongsToMany('App\Category');
+      return $this->belongsToMany('App\Category');
     }
 
+    public function users()
+    {
+        return $this->belongsTO('App\User');
+    }
 }
