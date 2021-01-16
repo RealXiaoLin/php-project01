@@ -20,6 +20,7 @@ class ToppageController extends Controller
     $toppage_url = action([ToppageController::class, 'index']);
     $question_url = action([QuestionController::class, 'create']);
     $category_create_url = action([CategoryController::class, 'create']);
-    return view('toppages.workbook', [ 'mypage_url' => $mypage_url, 'toppage_url' => $toppage_url, 'question_url' => $question_url, 'category_create_url' => $category_create_url]);
+    $workbook_create_url = action([WorkbookController::class, 'create']);
+    return view('toppages.workbook', [ 'mypage_url' => $mypage_url, 'toppage_url' => $toppage_url, 'question_url' => $question_url, 'category_create_url' => $category_create_url, 'workbook_create_url' => $workbook_create_url]);
   }
 }
