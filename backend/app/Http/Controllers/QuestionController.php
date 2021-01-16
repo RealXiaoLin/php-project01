@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Question;
+use App\Models\Workbook;
+use App\Models\Question_workbook;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,7 +28,7 @@ class QuestionController extends Controller
     public function create()
     {
       $user = Auth::user();
-      $workbooks = $user->workbooks();
+      $workbooks = $user->workbooks;
       return view('questions.create', ['workbooks' => $workbooks]);
     }
 
@@ -48,16 +50,25 @@ class QuestionController extends Controller
           'answer_choice' => ['bail', 'required', 'in:1,2,3,4'],
         ]);
 
+        // dump($request->all());
+
         $question = new Question;
-        // $question->body = $request->body;
-        // $question->choice_1 = $request->choice_1;
-        // $question->choice_2 = $request->choice_2;
-        // $question->choice_3 = $request->choice_3;
-        // $question->choice_4 = $request->choice_4;
-        // $question->answer_body = $request->answer_body;
-        // $question->answer_choice = $request->answer_choice;
-        // $question->save();
-        $question->fill($request->all())->save();
+        $question->body = $request->body;
+        $question->choice_1 = $request->choice_1;
+        $question->choice_2 = $request->choice_2;
+        $question->choice_3 = $request->choice_3;
+        $question->choice_4 = $request->choice_4;
+        $question->answer_body = $request->answer_body;
+        $question->answer_choice = $request->answer_choice;
+        $question->save();
+
+        $question_id = $question->id;
+        $question->workbooks()->attach(
+          ['question_id' => $question_id],
+          ['workbook_id' => $request->workbook_id],
+          ['created_at' => $this->now],
+          ['updated_at' => $this->now],
+        );
         return redirect('question/'.$question->id);
     }
 

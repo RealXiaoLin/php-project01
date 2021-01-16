@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCategoryQuestionsTable extends Migration
+class CreateCategoryQuestionTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateCategoryQuestionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('category_questions', function (Blueprint $table) {
+        Schema::create('category_question', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('question_id');
@@ -30,9 +30,6 @@ class CreateCategoryQuestionsTable extends Migration
         });
     }
 
-
-
-
     /**
      * Reverse the migrations.
      *
@@ -40,6 +37,6 @@ class CreateCategoryQuestionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('category_questions');
+        Schema::dropIfExists('category_question');
     }
 }
