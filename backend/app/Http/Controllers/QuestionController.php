@@ -46,15 +46,16 @@ class QuestionController extends Controller
         ]);
 
         $question = new Question;
-        $question->body = $request->body;
-        $question->choice_1 = $request->choice_1;
-        $question->choice_2 = $request->choice_2;
-        $question->choice_3 = $request->choice_3;
-        $question->choice_4 = $request->choice_4;
-        $question->answer_body = $request->answer_body;
-        $question->answer_choice = $request->answer_choice;
-        $question->save();
-        return redirect('question/show'.$question->id);
+        // $question->body = $request->body;
+        // $question->choice_1 = $request->choice_1;
+        // $question->choice_2 = $request->choice_2;
+        // $question->choice_3 = $request->choice_3;
+        // $question->choice_4 = $request->choice_4;
+        // $question->answer_body = $request->answer_body;
+        // $question->answer_choice = $request->answer_choice;
+        // $question->save();
+        $question->fill($request->all())->save();
+        return redirect('question/'.$question->id);
     }
 
     /**
@@ -65,7 +66,9 @@ class QuestionController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('questions.show', [
+            'question' => Question::findOrFail($id)
+        ]);
     }
 
     /**
