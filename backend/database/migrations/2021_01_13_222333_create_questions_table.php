@@ -18,11 +18,11 @@ class CreateQuestionsTable extends Migration
             $table->string('body',500);
             $table->string('choice_1',100);
             $table->string('choice_2',100);
-            $table->string('choice_3',100);
-            $table->string('choice_4',100);
+            $table->string('choice_3',100)->nullable();
+            $table->string('choice_4',100)->nullable();
             $table->string('answer_body');
             $table->integer('answer_choice');
-            $table->integer('status_num');
+            $table->integer('status_num')->default($value = 1);
             $table->timestamps();
         });
     }

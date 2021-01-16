@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Question;
 use Illuminate\Http\Request;
 
 class QuestionController extends Controller
@@ -36,13 +37,25 @@ class QuestionController extends Controller
     {
         $validated = $request->validate([
           'body' => ['bail', 'required', 'max:500'],
-          'choice_1' => ['bail', 'required', 'unique:posts', 'max:100'],
-          'choice_2' => ['bail', 'required', 'unique:posts', 'max:100'],
+          'choice_1' => ['bail', 'required', 'max:100'],
+          'choice_2' => ['bail', 'required', 'max:100'],
           'choice_3' => ['max:100'],
           'choice_4' => ['max:100'],
           'answer_body' => ['bail', 'required', 'max:500'],
           'answer_choice' => ['bail', 'required', 'in:1,2,3,4'],
         ]);
+
+        $question = new Question;
+        // $question->body = $request->body;
+        // $question->choice_1 = $request->choice_1;
+        // $question->choice_2 = $request->choice_2;
+        // $question->choice_3 = $request->choice_3;
+        // $question->choice_4 = $request->choice_4;
+        // $question->answer_body = $request->answer_body;
+        // $question->answer_choice = $request->answer_choice;
+        // $question->save();
+        $question->fill($request->all())->save();
+        return redirect('question/'.$question->id);
     }
 
     /**
@@ -53,7 +66,9 @@ class QuestionController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('questions.show', [
+            'question' => Question::findOrFail($id)
+        ]);
     }
 
     /**
