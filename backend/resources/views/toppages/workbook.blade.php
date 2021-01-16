@@ -46,20 +46,15 @@
         </div>
       </div>
     </div>
-    <div class="workbook-function-tab row m-0">
-      <div class="col-3 border p-2">
-        問題集タイトル1
+    @isset($workbooks)
+      <div class="workbook-function-tab row m-0">
+        @foreach ($workbooks as $workbook)
+        <div class="col-3 border p-2">
+          {{ $workbook->title }}
+        </div>
+        @endforeach
       </div>
-      <div class="col-3 border p-2">
-        問題集タイトル2
-      </div>
-      <div class="col-3 border p-2">
-        問題集タイトル3
-      </div>
-      <div class="col-3 border p-2">
-        問題集タイトル4
-      </div>
-    </div>
+    @endisset
   </div>
   <div class="tag mt-5">
     <div class="tag-function row">

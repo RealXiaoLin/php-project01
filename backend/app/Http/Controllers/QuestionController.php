@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Question;
-use App\Models\Workbook;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class QuestionController extends Controller
 {
@@ -25,7 +25,9 @@ class QuestionController extends Controller
      */
     public function create()
     {
-      return view('questions.create');
+      $user = Auth::user();
+      $workbooks = $user->workbooks();
+      return view('questions.create', ['workbooks' => $workbooks]);
     }
 
     /**
