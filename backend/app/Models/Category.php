@@ -11,10 +11,11 @@ class Category extends Model
 
     protected $fillable = [
         'body',
+        'user_id',
     ];
 
     public function questions()
     {
-        return $this->belongsToMany('App\Question');
+        return $this->belongsToMany(Question::class);
     }
 }

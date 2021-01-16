@@ -11,11 +11,16 @@ class Workbook extends Model
 
     protected $fillable = [
         'title',
+        'user_id',
     ];
 
     public function questions()
     {
-        return $this->belongsToMany('App\Question');
+        return $this->belongsToMany(Question::class);
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
