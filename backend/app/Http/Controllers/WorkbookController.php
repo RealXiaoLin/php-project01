@@ -57,7 +57,10 @@ class WorkbookController extends Controller
    */
   public function show($id)
   {
+      $questions = Workbook::find($id)->questions;
+      dump($questions);
 
+      return view('workbooks.show', ['questions' => $questions]);
   }
 
   /**
