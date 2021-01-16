@@ -33,5 +33,8 @@ Route::get('/workbook',  [ToppageController::class, 'workbook'])->middleware('au
 use App\Http\Controllers\QuestionController;
 Route::resource('/question',  QuestionController::class)->middleware('auth');
 
+use App\Http\Controllers\CategoryController;
+Route::resource('/category',  CategoryController::class)->middleware('auth');
+
 use App\Http\Controllers\MypageController;
 Route::get('/mypage',  [MypageController::class, 'index'])->middleware('auth');

@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Question;
-use App\Models\Workbook;
 use Illuminate\Http\Request;
+use App\Models\Category;
 
-class QuestionController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +14,7 @@ class QuestionController extends Controller
      */
     public function index()
     {
-      return view('questions.index');
+
     }
 
     /**
@@ -25,9 +24,8 @@ class QuestionController extends Controller
      */
     public function create()
     {
-      return view('questions.create');
+        return view('category.create');
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -37,26 +35,12 @@ class QuestionController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-          'body' => ['bail', 'required', 'max:500'],
-          'choice_1' => ['bail', 'required', 'max:100'],
-          'choice_2' => ['bail', 'required', 'max:100'],
-          'choice_3' => ['max:100'],
-          'choice_4' => ['max:100'],
-          'answer_body' => ['bail', 'required', 'max:500'],
-          'answer_choice' => ['bail', 'required', 'in:1,2,3,4'],
+          'body' => ['bail', 'required', 'max:30'],
         ]);
 
-        $question = new Question;
-        // $question->body = $request->body;
-        // $question->choice_1 = $request->choice_1;
-        // $question->choice_2 = $request->choice_2;
-        // $question->choice_3 = $request->choice_3;
-        // $question->choice_4 = $request->choice_4;
-        // $question->answer_body = $request->answer_body;
-        // $question->answer_choice = $request->answer_choice;
-        // $question->save();
-        $question->fill($request->all())->save();
-        return redirect('question/'.$question->id);
+        $category = new Category;
+        $category->fill($request->all())->save();
+        return redirect('workbook');
     }
 
     /**
@@ -67,9 +51,7 @@ class QuestionController extends Controller
      */
     public function show($id)
     {
-        return view('questions.show', [
-            'question' => Question::findOrFail($id)
-        ]);
+        //
     }
 
     /**
