@@ -6,6 +6,19 @@
       <form action="/question" method="POST">
         @csrf
         <div class="mb-3">
+          @isset($workbooks)
+            <p class="bg-dark text-white fw-bold pl-2 pt-2 pb-2 mt-1 mb-0">フォルダ</p>
+            @foreach ($workbooks as $workbook)
+              <div class="form-check mt-1">
+                <input class="form-check-input" type="radio" value="{{ $workbook->id }}", id="flexCheckDefault" name="workbook_id">
+                <label class="form-check-label" for="flexCheckDefault">
+                  {{ $workbook->title }}
+                </label>
+              </div>
+            @endforeach
+          @endisset
+        </div>
+        <div class="mb-3">
           <p class="bg-dark text-white fw-bold pl-2 pt-2 pb-2 mt-1 mb-0">問題文</p>
           <textarea name="body" rows="5" class="form-control">{{ old('body') }}</textarea>
           @error('body')
