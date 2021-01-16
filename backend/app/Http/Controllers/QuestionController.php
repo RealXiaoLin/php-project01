@@ -66,8 +66,8 @@ class QuestionController extends Controller
         $question->workbooks()->attach(
           ['question_id' => $question_id],
           ['workbook_id' => $request->workbook_id],
-          ['created_at' => $this->now],
-          ['updated_at' => $this->now],
+          // ['created_at' => $this->now],
+          // ['updated_at' => $this->now],
         );
         return redirect('question/'.$question->id);
     }
