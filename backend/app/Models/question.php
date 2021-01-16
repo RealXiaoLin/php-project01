@@ -23,16 +23,16 @@ class Question extends Model
 
     public function workbooks()
     {
-      return $this->belongsToMany('App\Workbook');
+      return $this->belongsToMany(Workbook::class);
     }
 
     public function categories()
     {
-      return $this->belongsToMany('App\Category');
+      return $this->belongsToMany(Category::class);
     }
 
-    public function users()
+    public function user()
     {
-        return $this->belongsTO('App\User');
+        return $this->belongsTo(User::class);
     }
 }

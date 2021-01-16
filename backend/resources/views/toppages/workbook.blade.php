@@ -40,28 +40,29 @@
   <div class="workbook">
     <div class="workbook-function row">
       <div class="col-12">
-        <div class="p-2 bg-dark text-white">問題集</div>
+        <div class="p-2 bg-dark text-white d-flex">
+        フォルダ
+        <a class="nav-link p-0 pl-2 m-0" href={{ $workbook_create_url }}>(新規フォルダ登録)</a>
+        </div>
       </div>
     </div>
-    <div class="workbook-function-tab row m-0">
-      <div class="col-3 border p-2">
-        問題集タイトル1
+    @isset($workbooks)
+      <div class="workbook-function-tab row m-0">
+        @foreach ($workbooks as $workbook)
+        <div class="col-3 border p-2">
+          {{ $workbook->title }}
+        </div>
+        @endforeach
       </div>
-      <div class="col-3 border p-2">
-        問題集タイトル2
-      </div>
-      <div class="col-3 border p-2">
-        問題集タイトル3
-      </div>
-      <div class="col-3 border p-2">
-        問題集タイトル4
-      </div>
-    </div>
+    @endisset
   </div>
   <div class="tag mt-5">
     <div class="tag-function row">
       <div class="col-12">
-        <div class="p-2 bg-dark text-white">タグ別</div>
+        <div class="p-2 bg-dark text-white d-flex">
+        タグ別
+        <a class="nav-link p-0 pl-2 m-0" href={{ $category_create_url }}>(新規タグ登録)</a>
+        </div>
       </div>
     </div>
     <div class="tag-function-tab row m-0">
