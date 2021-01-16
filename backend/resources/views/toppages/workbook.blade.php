@@ -40,7 +40,10 @@
   <div class="workbook">
     <div class="workbook-function row">
       <div class="col-12">
-        <div class="p-2 bg-dark text-white">問題集</div>
+        <div class="p-2 bg-dark text-white d-flex">
+        フォルダ
+        <a class="nav-link p-0 pl-2 m-0" href={{ $workbook_create_url }}>(新規フォルダ登録)</a>
+        </div>
       </div>
     </div>
     <div class="workbook-function-tab row m-0">
