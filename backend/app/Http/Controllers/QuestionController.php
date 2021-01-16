@@ -37,8 +37,8 @@ class QuestionController extends Controller
     {
         $validated = $request->validate([
           'body' => ['bail', 'required', 'max:500'],
-          'choice_1' => ['bail', 'required', 'unique:posts', 'max:100'],
-          'choice_2' => ['bail', 'required', 'unique:posts', 'max:100'],
+          'choice_1' => ['bail', 'required', 'max:100'],
+          'choice_2' => ['bail', 'required', 'max:100'],
           'choice_3' => ['max:100'],
           'choice_4' => ['max:100'],
           'answer_body' => ['bail', 'required', 'max:500'],
