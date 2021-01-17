@@ -67,11 +67,11 @@
           console.log($answered_choice);
           console.log($answer_choice);
           console.log($question_id);
-          $.ajaxSetup({
+          $.ajax({
             type: "POST",
             url: "/question/choice",
             headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-            data: { answered_choice : $answered_choice, question_id: $question_id },
+            data: { 'answered_choice': $answered_choice, 'question_id': $question_id },
           });
         })
       </script>
