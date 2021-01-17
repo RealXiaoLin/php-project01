@@ -50,8 +50,6 @@ class QuestionController extends Controller
           'answer_choice' => ['bail', 'required', 'in:1,2,3,4'],
         ]);
 
-        // dump($request->all());
-
         $question = new Question;
         $question->body = $request->body;
         $question->choice_1 = $request->choice_1;
@@ -66,8 +64,6 @@ class QuestionController extends Controller
         $question->workbooks()->attach(
           ['question_id' => $question_id],
           ['workbook_id' => $request->workbook_id],
-          // ['created_at' => $this->now],
-          // ['updated_at' => $this->now],
         );
         return redirect('question/'.$question->id);
     }
@@ -105,7 +101,16 @@ class QuestionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $question = Question::find($id);
+        $question->body = $request->body;
+        $question->choice_1 = $request->choice_1;
+        $question->choice_2 = $request->choice_2;
+        $question->choice_3 = $request->choice_3;
+        $question->choice_4 = $request->choice_4;
+        $question->answer_body = $request->answer_body;
+        $question->answer_choice = $request->answer_choice;
+        $question->update();
+
     }
 
     /**
@@ -118,4 +123,28 @@ class QuestionController extends Controller
     {
         //
     }
+
+  /**
+   * Remove the specified resource from storage.
+   *
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+  public function choice(Request $request)
+  {
+      // $answered_choice = $request->answered_choice;
+      // $question_id = $request->question_id;
+      $answered_choice = $_POST['answered_choice'];
+      $question_id = $_POST['question_id'];
+      $question = Question::find($question_id);
+      if($answered_choice === $question->answer_choice){
+        // $question->update(["status_num" => 2]);
+        $question->status_num = 2;
+        $question->update();
+      } else {
+        // $question->update(["status_num" => 3]);
+        $question->status_num = 3;
+        $question->update();
+      }
+  }
 }
