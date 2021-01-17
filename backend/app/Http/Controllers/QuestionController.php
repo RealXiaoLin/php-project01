@@ -132,19 +132,13 @@ class QuestionController extends Controller
    */
   public function choice(Request $request)
   {
-      // $answered_choice = $request->answered_choice;
-      // $question_id = $request->question_id;
-      $answered_choice = $_POST['answered_choice'];
-      $question_id = $_POST['question_id'];
+      $answered_choice = $request->answered_choice;
+      $question_id = $request->question_id;
       $question = Question::find($question_id);
-      if($answered_choice === $question->answer_choice){
-        // $question->update(["status_num" => 2]);
-        $question->status_num = 2;
-        $question->update();
+      if($answered_choice == $question->answer_choice){
+        $question->update(["status_num" => 2]);
       } else {
-        // $question->update(["status_num" => 3]);
-        $question->status_num = 3;
-        $question->update();
+        $question->update(["status_num" => 3]);
       }
   }
 }
