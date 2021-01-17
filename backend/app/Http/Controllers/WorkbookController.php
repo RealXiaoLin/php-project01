@@ -6,6 +6,7 @@ use App\Models\Workbook;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\User;
+use Illuminate\Pagination\Paginator;
 
 class WorkbookController extends Controller
 {
@@ -57,10 +58,12 @@ class WorkbookController extends Controller
    */
   public function show($id)
   {
-      $questions = Workbook::find($id)->questions;
+      $questions = Workbook::find($id)->questions()->paginate(1);
       dump($questions);
+      $questions_count = count($questions);
+      dump($questions_count);
 
-      return view('workbooks.show', ['questions' => $questions]);
+      return view('workbooks.show', ['questions' => $questions, 'questions_count' => $questions_count]);
   }
 
   /**
