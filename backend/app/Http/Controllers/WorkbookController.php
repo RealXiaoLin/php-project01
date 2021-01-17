@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Workbook;
+use App\Models\Question;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\User;
@@ -61,7 +62,6 @@ class WorkbookController extends Controller
       $questions = Workbook::find($id)->questions()->paginate(1);
       dump($questions);
       $questions_count = count($questions);
-      dump($questions_count);
 
       return view('workbooks.show', ['questions' => $questions, 'questions_count' => $questions_count]);
   }
@@ -86,7 +86,8 @@ class WorkbookController extends Controller
    */
   public function update(Request $request, $id)
   {
-      //
+
+
   }
 
   /**

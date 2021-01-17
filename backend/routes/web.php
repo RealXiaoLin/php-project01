@@ -32,6 +32,7 @@ Route::get('/topworkbook',  [ToppageController::class, 'workbook'])->middleware(
 
 use App\Http\Controllers\QuestionController;
 Route::resource('/question',  QuestionController::class)->middleware('auth');
+Route::post('/question/choice',  [QuestionController::class, 'choice'])->middleware('auth');
 
 use App\Http\Controllers\CategoryController;
 Route::resource('/category',  CategoryController::class)->middleware('auth');

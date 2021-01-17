@@ -19,7 +19,8 @@
     <div class="col-8 mx-auto border">
       <div class="row question-num">
         <div class="col-12 mt-4">
-          問題番号：{{ $questions->currentPage() }}
+          <p class="question-id p-0 m-0">問題ID：{{ $question->id }}</p>
+          <p class="p-0 m-0">出題番号：{{ $questions->currentPage() }}</p>
         </div>
       </div>
       <div class="question-body row mt-4 p-3">
@@ -31,22 +32,22 @@
         <div class="col-12 p-5">
           <ul class="list-group">
             <li class="list-group-item pl-5">
-              <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+              <input name="answer" class="form-check-input me-1" type="radio" value="1" aria-label="...">
               {{ $question->choice_1 }}
             </li>
             <li class="list-group-item pl-5">
-              <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+              <input name="answer" class="form-check-input me-1" type="radio" value="2" aria-label="...">
               {{ $question->choice_2 }}
             </li>
             @isset($question->choice_3)
             <li class="list-group-item pl-5">
-              <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+              <input name="answer" class="form-check-input me-1" type="radio" value="3" aria-label="...">
               {{ $question->choice_3 }}
             </li>
             @endisset
             @isset($question->choice_4)
             <li class="list-group-item pl-5">
-              <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+              <input name="answer" class="form-check-input me-1" type="radio" value="4" aria-label="...">
               {{ $question->choice_4 }}
             </li>
             @endisset
@@ -54,8 +55,27 @@
         </div>
       </div>
       <div class="answer-btn row">
-        <button type="button" class="btn btn-primary col-6 mx-auto">回答する</button>
+        <button type="button" class="btn btn-primary col-6 mx-auto" id="answer-btn">回答する</button>
       </div>
+      <!-- ajax -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <script>
+        $('#answer-btn').on('click', function () {
+          $question_id = {{ $question->id }};
+          $answer_choice = {{ $question->answer_choice }};
+          $answered_choice = Number($('input[name="answer"]:checked').val());
+          console.log($answered_choice);
+          console.log($answer_choice);
+          console.log($question_id);
+          $.ajaxSetup({
+            type: "POST",
+            url: "/question/choice",
+            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            data: { answered_choice : $answered_choice, question_id: $question_id },
+          });
+        })
+      </script>
+      <!-- ajax -->
       <div class="answer-body row p-3">
         <p>回答</p>
         <div class="col-12">
