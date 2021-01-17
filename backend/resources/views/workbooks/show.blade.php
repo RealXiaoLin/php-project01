@@ -76,10 +76,10 @@
     @if ($questions->onFirstPage())
       <button type="button" class="btn btn-link"></button>
     @else
-      <button type="button" class="btn btn-primary"><a href="{{ $questions->previousPageUrl() }}" class="text-reset">戻る</a></button>
+      <a href="{{ $questions->previousPageUrl() }}" class="text-reset"><button type="button" class="btn btn-primary">戻る</button></a>
     @endif
     @if ($questions->hasMorePages())
-      <button type="button" class="btn btn-primary"><a href="{{ $questions->nextPageUrl() }}" class="text-reset">進む</a></button>
+      <a href="{{ $questions->nextPageUrl() }}" class="text-reset"><button type="button" class="btn btn-primary">進む</button></a>
     @endif
     </div>
   </div>
