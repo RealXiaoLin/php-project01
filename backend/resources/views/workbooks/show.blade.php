@@ -18,9 +18,18 @@
   <div class="question row">
     <div class="col-8 mx-auto border">
       <div class="row question-num">
-        <div class="col-12 mt-4">
+        <div class="col-8 mt-4">
           <p class="question-id p-0 m-0">問題ID：{{ $question->id }}</p>
           <p class="p-0 m-0">出題番号：{{ $questions->currentPage() }}</p>
+        </div>
+        <div class="col-4 mt-4">
+          @if($question->status_num == 1)
+            <p class="p-0 m-0 text-end">前回のステータス：<span class="btn btn-light pl-1 pr-1 pt-0 pb-0 m-0">未回答</span></p>
+          @elseif($question->status_num == 2)
+            <p class="p-0 m-0 text-end">前回のステータス：<span class="btn btn-primary pl-1 pr-1 pt-0 pb-0 m-0">正解</span></p>
+          @elseif($question->status_num == 3)
+            <p class="p-0 m-0 text-end">前回のステータス：<span class="btn btn-danger pl-1 pr-1 pt-0 pb-0 m-0">不正解</span></p>
+          @endif
         </div>
       </div>
       <div class="question-body row mt-4 p-3">
@@ -55,12 +64,12 @@
         </div>
       </div>
       <div class="answer-btn row">
-        <button type="button" class="btn btn-primary col-6 mx-auto" id="answer-btn">回答する</button>
+        <button type="button" class="btn btn-primary col-6 mb-5 mx-auto" id="answer-btn">回答する</button>
       </div>
       <!-- ajax -->
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
       <script>
         $('#answer-btn').on('click', function () {
+          $("#answer-row").show(300);
           $question_id = {{ $question->id }};
           $answer_choice = {{ $question->answer_choice }};
           $answered_choice = Number($('input[name="answer"]:checked').val());
@@ -76,17 +85,19 @@
         })
       </script>
       <!-- ajax -->
-      <div class="answer-body row p-3">
-        <p>回答</p>
-        <div class="col-12">
-          <ul class="list-group list-group-flush pl-3 pr-3">
-            <li class="list-group-item border">{{ $question->answer_choice }}</li>
-          </ul>
+      <div class="answer-row hidden" id="answer-row" style="display: none;">
+        <div class="answer-body row p-3">
+          <p>回答</p>
+          <div class="col-12">
+            <ul class="list-group list-group-flush pl-3 pr-3">
+              <li class="list-group-item border">{{ $question->answer_choice }}</li>
+            </ul>
+          </div>
         </div>
-      </div>
-      <div class="answer row p-3">
-        <div class="col-12">
-          {{ $question->answer_body }}
+        <div class="answer row p-3">
+          <div class="col-12">
+            {{ $question->answer_body }}
+          </div>
         </div>
       </div>
     </div>
