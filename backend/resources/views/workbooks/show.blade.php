@@ -6,12 +6,14 @@
   <div class="row mb-3">
     <div class="col-8 mx-auto">
       <div class="progress">
+        <!-- 進捗バーの％表示 -->
         <?php
           $current_page = intval($questions->currentPage());
           $total_page = intval($questions->lastPage());
-          $percentage = ($current_page / $total_page);
+          $percentage = ( $current_page / $total_page ) * 100;
         ?>
-        <div class="progress-bar" role="progressbar" style="width:33%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{ $questions->firstItem() }} / {{ $questions->lastPage() }}</div>
+        <!-- 進捗バーの％表示 -->
+        <div class="progress-bar" role="progressbar" style="width:{{floor($percentage)}}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{ $questions->firstItem() }} / {{ $questions->lastPage() }}</div>
       </div>
     </div>
   </div>
@@ -111,6 +113,8 @@
     @endif
     @if ($questions->hasMorePages())
       <a href="{{ $questions->nextPageUrl() }}" class="text-reset"><button type="button" class="btn btn-primary">進む</button></a>
+    @else
+      <a href="{{ route('workbook.score', ['workbook' => $id]) }}" class="text-reset"><button type="button" class="btn btn-info">終了</button></a>
     @endif
     </div>
   </div>

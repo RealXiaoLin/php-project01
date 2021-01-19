@@ -63,7 +63,7 @@ class WorkbookController extends Controller
       dump($questions);
       $questions_count = count($questions);
 
-      return view('workbooks.show', ['questions' => $questions, 'questions_count' => $questions_count]);
+      return view('workbooks.show', ['questions' => $questions, 'questions_count' => $questions_count, 'id' => $id]);
   }
 
   /**
@@ -99,5 +99,26 @@ class WorkbookController extends Controller
   public function destroy($id)
   {
       //
+  }
+
+  /**
+   * Remove the specified resource from storage.
+   *
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+  public function score($id)
+  {
+    $workbook = Workbook::find($id);
+    $questions = $workbook->questions;
+    $questions_count = count($questions);
+    $un_answer_questions = $questions->where('status_num', 1);
+    $un_answer_questions_count = count($un_answer_questions);
+    $collect_questions = $questions->where('status_num', 2);
+    $collect_questions_count = count($collect_questions);
+    $failed_questions = $questions->where('status_num', 3);
+    $failed_questions_count = count($failed_questions);
+
+    return view('workbooks.score', ['workbook' => $workbook, 'questions' => $questions, 'questions_count' => $questions_count, 'failed_questions_count' => $failed_questions_count, 'collect_questions_count' => $collect_questions_count, 'un_answer_questions_count' => $un_answer_questions_count]);
   }
 }
