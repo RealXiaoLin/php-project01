@@ -119,6 +119,20 @@ class WorkbookController extends Controller
     $failed_questions = $questions->where('status_num', 3);
     $failed_questions_count = count($failed_questions);
 
-    return view('workbooks.score', ['workbook' => $workbook, 'questions' => $questions, 'questions_count' => $questions_count, 'failed_questions_count' => $failed_questions_count, 'collect_questions_count' => $collect_questions_count, 'un_answer_questions_count' => $un_answer_questions_count]);
+    return view('workbooks.score', ['workbook' => $workbook, 'questions' => $questions, 'questions_count' => $questions_count, 'failed_questions_count' => $failed_questions_count, 'collect_questions_count' => $collect_questions_count, 'un_answer_questions_count' => $un_answer_questions_count, 'id' => $id]);
+  }
+
+  /**
+   * Remove the specified resource from storage.
+   *
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+  public function review($id)
+  {
+    $questions = Workbook::find($id)->questions()->where('status_num', 3)->paginate(1);
+    $questions_count = count($questions);
+
+    return view('workbooks.review', ['questions' => $questions, 'questions_count' => $questions_count, 'id' => $id]);
   }
 }

@@ -45,7 +45,12 @@
       </div>
     </div>
     <div class="check-failed-answer-btn row">
-      <a href="#" class="text-reset col-3 mx-auto"><button type="button" class="btn btn-primary">不正解を見直す</button></a>
+    @if($failed_questions_count == 0 && $un_answer_questions_count == 0)
+      <a href="{{ route('toppage.workbook') }}" class="text-reset col-4 mx-auto"><button type="button" class="btn btn-primary">問題集ページに戻る</button></a>
+    @else
+      <a href="{{ route('workbook.review', ['workbook' => $id]) }}" class="text-reset col-4 mx-auto"><button type="button" class="btn btn-primary">不正解と未回答を見直す</button></a>
+      <a href="{{ route('toppage.workbook') }}" class="text-reset col-4 mx-auto"><button type="button" class="btn btn-primary">問題集ページに戻る</button></a>
+    @endif
     </div>
   </div>
 </div>

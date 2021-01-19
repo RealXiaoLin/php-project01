@@ -28,7 +28,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 use App\Http\Controllers\ToppageController;
 Route::get('/',  [ToppageController::class, 'index']);
-Route::get('/topworkbook',  [ToppageController::class, 'workbook'])->middleware('auth');
+Route::get('/topworkbook',  [ToppageController::class, 'workbook'])->name('toppage.workbook')->middleware('auth');
 
 use App\Http\Controllers\QuestionController;
 Route::resource('/question',  QuestionController::class)->middleware('auth');
@@ -40,6 +40,7 @@ Route::resource('/category',  CategoryController::class)->middleware('auth');
 use App\Http\Controllers\WorkbookController;
 Route::resource('/workbook',  WorkbookController::class)->middleware('auth');
 Route::get('/workbook/score/{workbook}',  [WorkbookController::class, 'score'])->name('workbook.score')->middleware('auth');
+Route::get('/workbook/review/{workbook}',  [WorkbookController::class, 'review'])->name('workbook.review')->middleware('auth');
 
 use App\Http\Controllers\MypageController;
 Route::get('/mypage',  [MypageController::class, 'index'])->middleware('auth');
