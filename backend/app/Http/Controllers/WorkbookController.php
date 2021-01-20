@@ -18,7 +18,8 @@ class WorkbookController extends Controller
    */
   public function index()
   {
-
+    $workbooks = Auth::user()->workbooks;
+    return view('workbooks.index', [ 'workbooks' => $workbooks ]);
   }
 
   /**
@@ -74,7 +75,8 @@ class WorkbookController extends Controller
    */
   public function edit($id)
   {
-      //
+      $workbook = Workbook::find($id);
+      return view('workbooks.edit', ['workbook' => $workbook]);
   }
 
   /**
@@ -86,7 +88,12 @@ class WorkbookController extends Controller
    */
   public function update(Request $request, $id)
   {
-
+      $validated = $request->validate([
+        'title' => ['bail', 'required', 'max:30'],
+      ]);
+      $workbook = Workbook::find($id)->update(['title' => $request->title]);
+      $workbooks = Auth::user()->workbooks;
+      return view('workbooks.index', [ 'workbooks' => $workbooks ]);
 
   }
 
@@ -98,7 +105,9 @@ class WorkbookController extends Controller
    */
   public function destroy($id)
   {
-      //
+      $workbook = Workbook::find($id)->delete();
+      $workbooks = Auth::user()->workbooks;
+      return view('workbooks.index', [ 'workbooks' => $workbooks ]);
   }
 
   /**
