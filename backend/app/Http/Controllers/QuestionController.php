@@ -60,11 +60,13 @@ class QuestionController extends Controller
         $question->answer_choice = $request->answer_choice;
         $question->save();
 
-        $question_id = $question->id;
-        $question->workbooks()->attach(
-          ['question_id' => $question_id],
-          ['workbook_id' => $request->workbook_id],
-        );
+        if($request->workbook_id != null) {
+          $question_id = $question->id;
+          $question->workbooks()->attach(
+            ['question_id' => $question_id],
+            ['workbook_id' => $request->workbook_id],
+          );
+        }
         return redirect('question/'.$question->id);
     }
 
