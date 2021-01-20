@@ -43,6 +43,7 @@
         <div class="p-2 bg-dark text-white d-flex">
         フォルダ
         <a class="nav-link p-0 pl-2 m-0" href={{ $workbook_create_url }}>(新規フォルダ登録)</a>
+        <a class="nav-link p-0 pl-2 m-0" href="{{ route('workbook.index') }}">(フォルダ編集)</a>
         </div>
       </div>
     </div>
