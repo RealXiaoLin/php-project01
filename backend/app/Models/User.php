@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
@@ -24,7 +25,7 @@ class User extends Authenticatable
 
     public function questions()
     {
-      return $this->hasMany('App\Question');
+      return $this->hasMany(Question::class);
     }
 
     /**

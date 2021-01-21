@@ -23,7 +23,10 @@ class CreateQuestionsTable extends Migration
             $table->string('answer_body');
             $table->integer('answer_choice');
             $table->integer('status_num')->default($value = 1);
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
+            
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
