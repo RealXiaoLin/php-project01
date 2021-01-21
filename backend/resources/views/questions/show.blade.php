@@ -1,13 +1,6 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-  <div class="row mb-3">
-    <div class="col-8 mx-auto">
-      <div class="progress">
-        <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
-      </div>
-    </div>
-  </div>
   <div class="question row">
     <div class="col-8 mx-auto border">
       <div class="row question-num">
@@ -46,9 +39,6 @@
           </ul>
         </div>
       </div>
-      <div class="answer-btn row">
-        <button type="button" class="btn btn-primary col-6 mx-auto">回答する</button>
-      </div>
       <div class="answer-body row p-3">
         <p>回答</p>
         <div class="col-12">
@@ -65,9 +55,8 @@
     </div>
   </div>
   <div class="next-pre-btn row mt-3">
-    <div class="col-8 mx-auto d-flex justify-content-between">
-      <button type="button" class="btn btn-primary">戻る</button>
-      <button type="button" class="btn btn-primary">進む</button>
+    <div class="col-8 mx-auto">
+      <a class="nav-link p-0 pl-2 m-0" href="{{ route('toppage.workbook') }}">問題集ページに戻る</a>
     </div>
   </div>
 </div>

@@ -24,7 +24,7 @@
     </div>
     <div class="Membership-function-tab row m-0">
       <div class="col-3 border p-2">
-        成績表
+        <a href="{{ route('question.index') }}">問題一覧</a>
       </div>
       <div class="col-3 border p-2">
         未回答

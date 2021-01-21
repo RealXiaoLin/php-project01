@@ -7,6 +7,7 @@ use App\Models\Workbook;
 use App\Models\Question_workbook;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Pagination\Paginator;
 
 class QuestionController extends Controller
 {
@@ -17,7 +18,8 @@ class QuestionController extends Controller
      */
     public function index()
     {
-      return view('questions.index');
+      $questions = Auth::user()->questions()->paginate(1);
+      return view('questions.index',['questions' => $questions]);
     }
 
     /**
@@ -58,6 +60,7 @@ class QuestionController extends Controller
         $question->choice_4 = $request->choice_4;
         $question->answer_body = $request->answer_body;
         $question->answer_choice = $request->answer_choice;
+        $question->user_id = Auth::user()->id;
         $question->save();
 
         if($request->workbook_id != null) {
@@ -91,7 +94,7 @@ class QuestionController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
