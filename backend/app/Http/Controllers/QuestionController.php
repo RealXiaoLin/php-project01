@@ -94,7 +94,9 @@ class QuestionController extends Controller
      */
     public function edit($id)
     {
-
+      $question = Question::findOrFail($id);
+      $workbooks = Auth::user()->workbooks;
+      return view('questions.edit', ['question' => $question, 'workbooks' => $workbooks]);
     }
 
     /**
@@ -115,7 +117,7 @@ class QuestionController extends Controller
         $question->answer_body = $request->answer_body;
         $question->answer_choice = $request->answer_choice;
         $question->update();
-
+        return redirect('/question?page='.$id);
     }
 
     /**

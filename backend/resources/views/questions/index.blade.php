@@ -64,6 +64,10 @@
               {{ $question->answer_body }}
             </div>
           </div>
+          <div class="edit-btn row">
+            <a href="{{ route('question.edit', ['question' => $question->id]) }}" class="col-6 mx-auto"><button type="button" class="btn btn-primary mb-5" id="answer-btn">編集する</button></a>
+            <a href="{{ route('question.edit', ['question' => $question->id]) }}" class="col-6 mx-auto"><button type="button" class="btn btn-primary mb-5" id="answer-btn">削除する</button></a>
+          </div>
         </div>
       </div>
     </div>

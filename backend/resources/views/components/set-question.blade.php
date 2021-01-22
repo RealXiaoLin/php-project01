@@ -1,5 +1,5 @@
+@isset($workbooks)
 <div class="mb-3">
-  @isset($workbooks)
     <p class="bg-dark text-white fw-bold pl-2 pt-2 pb-2 mt-1 mb-0">フォルダ</p>
     @foreach ($workbooks as $workbook)
       <div class="form-check mt-1">
@@ -9,8 +9,8 @@
         </label>
       </div>
     @endforeach
-  @endisset
 </div>
+@endisset
 <div class="mb-3">
   <p class="bg-dark text-white fw-bold pl-2 pt-2 pb-2 mt-1 mb-0">問題文</p>
   <textarea name="body" rows="5" class="form-control">{{ old('body') }}</textarea>
