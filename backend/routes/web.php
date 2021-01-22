@@ -33,6 +33,7 @@ Route::get('/topworkbook',  [ToppageController::class, 'workbook'])->name('toppa
 use App\Http\Controllers\QuestionController;
 Route::resource('/question',  QuestionController::class)->middleware('auth');
 Route::post('/question/choice',  [QuestionController::class, 'choice'])->middleware('auth');
+Route::post('/question/search',  [QuestionController::class, 'search'])->name('question.search')->middleware('auth');
 
 use App\Http\Controllers\CategoryController;
 Route::resource('/category',  CategoryController::class)->middleware('auth');

@@ -17,7 +17,27 @@
     </div>
   </div>
   <div class="Membership">
-    <div class="Membership-function row">
+    <div class="search-tab row">
+      <div class="col-12">
+        <div class="p-2 bg-dark text-white">検索</div>
+      </div>
+      <div class="col-12">
+        <form action="{{ route('question.search') }}" method="POST">
+          @method('POST')
+          @csrf
+          <div class="row">
+            <div class="col-11">
+              <input type="text" class="form-control" name="keyword">
+              ※問題文の内容を検索します。
+            </div>
+            <div class="col-1">
+              <input type="submit" class="btn btn-primary" value="検索">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="Membership-function row  mt-5">
       <div class="col-12">
         <div class="p-2 bg-dark text-white">会員機能</div>
       </div>
