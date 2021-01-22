@@ -117,7 +117,7 @@ class QuestionController extends Controller
         $question->answer_body = $request->answer_body;
         $question->answer_choice = $request->answer_choice;
         $question->update();
-        return view('questions.show', ['question' => $question]);
+        return redirect('/question?page='.$id);
     }
 
     /**
