@@ -1,7 +1,23 @@
 @extends('layouts.app')
 @section('content')
-@isset($questions)
 <div class="container">
+  <div class="row">
+    <div class="col-8 mx-auto">
+    @if(!isset($questions[0]))
+      <h3 class="text-center mt-3">問題が登録されていません。</h3>
+    @endif
+    </div>
+  </div>
+@isset($questions)
+  <div class="alert-massages row">
+    <div class="col-8 mx-auto">
+    @if (session('message'))
+      <div class="alert alert-danger">
+          {{ session('message') }}
+      </div>
+    @endif
+    </div>
+  </div>
   @foreach ($questions as $question)
     <div class="question row">
       <div class="col-8 mx-auto border">
@@ -64,9 +80,13 @@
               {{ $question->answer_body }}
             </div>
           </div>
-          <div class="edit-btn row">
-            <a href="{{ route('question.edit', ['question' => $question->id]) }}" class="col-6 mx-auto"><button type="button" class="btn btn-primary mb-5" id="answer-btn">編集する</button></a>
-            <a href="{{ route('question.edit', ['question' => $question->id]) }}" class="col-6 mx-auto"><button type="button" class="btn btn-primary mb-5" id="answer-btn">削除する</button></a>
+          <div class="edit-btn row mx-auto">
+            <a href="{{ route('question.edit', ['question' => $question->id]) }}"><button type="button" class="btn btn-primary mb-5" id="answer-btn">編集する</button></a>
+            <form action="/question/{{$question->id}}" method="POST">
+              @method('DELETE')
+              @csrf
+              <input class="btn btn-danger" type='submit' value='削除する'>
+            </form>
           </div>
         </div>
       </div>
@@ -86,6 +106,6 @@
     @endif
     </div>
   </div>
-</div>
 @endisset
+</div>
 @endsection

@@ -128,7 +128,8 @@ class QuestionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Question::find($id)->delete();
+        return redirect('/question?page='.$id)->with('message', '削除しました');
     }
 
   /**
