@@ -18,7 +18,7 @@ class QuestionController extends Controller
      */
     public function index()
     {
-      $questions = Auth::user()->questions()->paginate(1);
+      $questions = Auth::user()->questions()->paginate(5);
       return view('questions.index',['questions' => $questions]);
     }
 
@@ -108,6 +108,16 @@ class QuestionController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validated = $request->validate([
+          'body' => ['bail', 'required', 'max:500'],
+          'choice_1' => ['bail', 'required', 'max:100'],
+          'choice_2' => ['bail', 'required', 'max:100'],
+          'choice_3' => ['max:100'],
+          'choice_4' => ['max:100'],
+          'answer_body' => ['bail', 'required', 'max:500'],
+          'answer_choice' => ['bail', 'required', 'in:1,2,3,4'],
+        ]);
+
         $question = Question::find($id);
         $question->body = $request->body;
         $question->choice_1 = $request->choice_1;
@@ -117,7 +127,10 @@ class QuestionController extends Controller
         $question->answer_body = $request->answer_body;
         $question->answer_choice = $request->answer_choice;
         $question->update();
-        return redirect('/question?page='.$id);
+
+        $question_count = Auth::user()->questions()->count();
+        $page = floor($question_count / 5);
+        return redirect('/question?page='.$page)->with('message', "[問題ID:$id]を編集しました");
     }
 
     /**
@@ -148,5 +161,23 @@ class QuestionController extends Controller
       } else {
         $question->update(["status_num" => 3]);
       }
+  }
+
+  /**
+   * Remove the specified resource from storage.
+   *
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+  public function search(Request $request)
+  {
+      $keyword = $request->keyword;
+      if (!empty($keyword)) {
+        $query = Auth::user()->questions()->where('body', 'LIKE', "%{$keyword}%");
+      } else {
+        $query = Auth::user()->questions();
+      }
+      $questions = $query->get();
+      return view('questions.search',['questions' => $questions]);
   }
 }
