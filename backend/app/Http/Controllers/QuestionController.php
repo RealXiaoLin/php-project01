@@ -180,4 +180,18 @@ class QuestionController extends Controller
       $questions = $query->get();
       return view('questions.search',['questions' => $questions]);
   }
+
+  /**
+   * Display a listing of the resource.
+   *
+   * @return \Illuminate\Http\Response
+   */
+  public function unanswered()
+  {
+    $query = Auth::user()->questions()->where('status_num', 1);
+    $questions = $query->get();
+    return view('questions.unanswered',['questions' => $questions]);
+  }
+
+
 }
