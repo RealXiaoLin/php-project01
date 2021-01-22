@@ -47,7 +47,7 @@
         <a href="{{ route('question.index') }}">問題一覧</a>
       </div>
       <div class="col-3 border p-2">
-        未回答
+        <a href="{{ route('question.unanswered') }}">未回答</a>
       </div>
       <div class="col-3 border p-2">
         間違えた問題
