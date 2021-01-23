@@ -71,7 +71,7 @@
       <div class="workbook-function-tab row m-0">
         @foreach ($workbooks as $workbook)
         <div class="col-3 border p-2">
-          <a class="nav-link p-0 pl-2 m-0" href="{{ route('workbook.show', ['workbook' => $workbook->id]) }}">{{ $workbook->title }}</a>
+          <a class="nav-link p-0 pl-2 m-0" href="{{ route('question.select', ['question' => $workbook->id]) }}">{{ $workbook->title }}</a>
         </div>
         @endforeach
       </div>

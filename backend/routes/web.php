@@ -35,6 +35,8 @@ Route::resource('/question',  QuestionController::class)->middleware('auth');
 Route::post('/question/choice',  [QuestionController::class, 'choice'])->middleware('auth');
 Route::post('/question/search',  [QuestionController::class, 'search'])->name('question.search')->middleware('auth');
 Route::get('/unanswered',  [QuestionController::class, 'unanswered'])->name('question.unanswered')->middleware('auth');
+Route::get('/select/{question}',  [QuestionController::class, 'select'])->name('question.select')->middleware('auth');
+// Route::get('/miss/{question}',  [QuestionController::class, 'miss'])->name('question.miss')->middleware('auth');
 
 use App\Http\Controllers\CategoryController;
 Route::resource('/category',  CategoryController::class)->middleware('auth');
@@ -43,6 +45,7 @@ use App\Http\Controllers\WorkbookController;
 Route::resource('/workbook',  WorkbookController::class)->middleware('auth');
 Route::get('/workbook/score/{workbook}',  [WorkbookController::class, 'score'])->name('workbook.score')->middleware('auth');
 Route::get('/workbook/review/{workbook}',  [WorkbookController::class, 'review'])->name('workbook.review')->middleware('auth');
+Route::get('/workbook/miss/{workbook}',  [WorkbookController::class, 'miss'])->name('workbook.miss')->middleware('auth');
 
 use App\Http\Controllers\MypageController;
 Route::get('/mypage',  [MypageController::class, 'index'])->middleware('auth');

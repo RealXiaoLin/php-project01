@@ -1,7 +1,15 @@
 @extends('layouts.app')
 @section('content')
-@isset($questions)
 <div class="container">
+@if(!isset($questions[0]))
+<div class="row mb-3">
+  <div class="col-12 mx-auto mb-3">
+    <h3 class="text-center mt-3">問題がありません。</h3>
+  </div>
+    <a class="btn btn-primary col-xs-12 col-sm-4 mx-auto mb-3" href="{{ route('toppage.workbook') }}">問題集に戻る</a>
+</div>
+@endif
+@isset($questions)
 @foreach ($questions as $question)
   <div class="row mb-3">
     <div class="col-8 mx-auto">
@@ -75,9 +83,6 @@
           $question_id = {{ $question->id }};
           $answer_choice = {{ $question->answer_choice }};
           $answered_choice = Number($('input[name="answer"]:checked').val());
-          console.log($answered_choice);
-          console.log($answer_choice);
-          console.log($question_id);
           $.ajax({
             type: "POST",
             url: "/question/choice",

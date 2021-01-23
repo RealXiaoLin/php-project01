@@ -68,6 +68,19 @@ class WorkbookController extends Controller
   }
 
   /**
+   * Display a listing of the resource.
+   *
+   * @return \Illuminate\Http\Response
+   */
+  public function miss($id)
+  {
+      $questions = workbook::findOrFail($id)->questions()->where('status_num', 3)->paginate(1);
+      $questions_count = count($questions);
+      return view('workbooks.show', ['questions' => $questions, 'questions_count' => $questions_count, 'id' => $id]);
+  }
+
+
+  /**
    * Show the form for editing the specified resource.
    *
    * @param  int  $id
