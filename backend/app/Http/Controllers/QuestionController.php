@@ -193,5 +193,26 @@ class QuestionController extends Controller
     return view('questions.unanswered',['questions' => $questions]);
   }
 
+  /**
+   * Show the form for editing the specified resource.
+   *
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+  public function miss($id)
+  {
+    $questions = workbook::findOrFail($id)->questions;
+    return view('questions.miss', ['question' => $questions]);
+  }
 
+  /**
+   * Show the form for editing the specified resource.
+   *
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+  public function select($id)
+  {
+    return view('questions.select', ['id' => $id]);
+  }
 }
