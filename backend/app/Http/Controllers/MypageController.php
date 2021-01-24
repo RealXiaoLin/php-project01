@@ -60,7 +60,8 @@ class MypageController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = Auth::user();
+        return view('mypages.edit', [ 'user' => $user ]);
     }
 
     /**
@@ -72,7 +73,21 @@ class MypageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'name' => ['bail', 'required', 'max:20'],
+            'email' => ['bail', 'required', 'max:100'],
+            'image' => ['bail', 'file',  'image', 'mimes:jpeg,png'],
+          ]);
+
+        $workbook_url = action([ToppageController::class, 'workbook']);
+        $toppage_url = action([ToppageController::class, 'index']);
+        $user = Auth::user();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $path = $request->file('image')->store('public');
+        $user->image_path = basename($path);
+        $user->save();
+        return view('mypages.index', [ 'user' => $user, 'toppage_url' => $toppage_url, 'workbook_url' => $workbook_url ]);
     }
 
     /**

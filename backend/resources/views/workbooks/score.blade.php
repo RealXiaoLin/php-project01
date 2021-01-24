@@ -21,19 +21,19 @@
         <div class="col-12">
           <h5>
             問題数：{{$questions_count}} |
-            未回答：{{$un_answer_questions_count}} |
             正解：{{$collect_questions_count}} |
-            不正解：{{$failed_questions_count}}
+            不正解：{{$failed_questions_count}} |
+            未回答：{{$un_answer_questions_count}}
           </h5>
         </div>
       </div>
       <div class="correct-answer-rate row mb-4">
         <div class="col-12">
           <div class="progress">
-            <div class="progress-bar" role="progressbar" style="width:{{$correct_answer_rate}}%;" aria-valuenow="{{$correct_answer_rate}}" aria-valuemin="0" aria-valuemax="{{$max_rate}}">{{$correct_answer_rate}}%</div>
-            <div class="progress-bar bg-success" role="progressbar" style="width: {{$failed_answer_rate}}%" aria-valuenow="{{$failed_answer_rate}}" aria-valuemin="0" aria-valuemax="{{$max_rate}}">{{$failed_answer_rate}}%</div>
+            <div class="progress-bar" role="progressbar" style="width:{{$correct_answer_rate}}%;" aria-valuenow="{{$correct_answer_rate}}" aria-valuemin="0" aria-valuemax="{{$max_rate}}">正解：{{$correct_answer_rate}}%</div>
+            <div class="progress-bar bg-success" role="progressbar" style="width: {{$failed_answer_rate}}%" aria-valuenow="{{$failed_answer_rate}}" aria-valuemin="0" aria-valuemax="{{$max_rate}}">不正解：{{$failed_answer_rate}}%</div>
             @if($un_answer_questions_count >= 1)
-            <div class="progress-bar bg-info" role="progressbar" style="width: {{$un_answer_rate}}%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="{{$max_rate}}">{{$un_answer_rate}}%</div>
+            <div class="progress-bar bg-info" role="progressbar" style="width: {{$un_answer_rate}}%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="{{$max_rate}}">未回答：{{$un_answer_rate}}%</div>
             @endif
           </div>
         </div>
