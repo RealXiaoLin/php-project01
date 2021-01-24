@@ -17,14 +17,14 @@
     </div>
   </div>
   <div class="profile row ml-5 mr-5 mb-3">
-    <div class="col-4 profile-picture">
+    <div class="col-6 profile-picture">
       @if($user->image_path != null)
         <img src="{{ asset('storage/'.$user->image_path) }}" class="img-thumbnail" alt="プロフィール画像">
       @else
         <img src="{{ asset('storage/def_image.jpeg') }}" class="img-thumbnail" alt="デフォルトプロフィール画像">
       @endif
     </div>
-    <div class="col-8 profile-list">
+    <div class="col-6 profile-list">
       <ul class="list-group">
         <li class="list-group-item">ニックネーム：{{ $user->name }}</li>
         <li class="list-group-item">メールアドレス：{{ $user->email }}</li>
