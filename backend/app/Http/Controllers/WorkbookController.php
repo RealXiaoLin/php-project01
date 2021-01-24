@@ -79,6 +79,18 @@ class WorkbookController extends Controller
       return view('workbooks.show', ['questions' => $questions, 'questions_count' => $questions_count, 'id' => $id]);
   }
 
+  /**
+   * Display a listing of the resource.
+   *
+   * @return \Illuminate\Http\Response
+   */
+  public function unanswered($id)
+  {
+      $questions = workbook::findOrFail($id)->questions()->where('status_num', 1)->paginate(1);
+      $questions_count = count($questions);
+      return view('workbooks.show', ['questions' => $questions, 'questions_count' => $questions_count, 'id' => $id]);
+  }
+
 
   /**
    * Show the form for editing the specified resource.
