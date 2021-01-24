@@ -48,4 +48,4 @@ Route::get('/workbook/miss/{workbook}',  [WorkbookController::class, 'miss'])->n
 Route::get('/workbook/unanswered/{workbook}',  [WorkbookController::class, 'unanswered'])->name('workbook.unanswered')->middleware('auth');
 
 use App\Http\Controllers\MypageController;
-Route::get('/mypage',  [MypageController::class, 'index'])->middleware('auth');
+Route::resource('/mypage',  MypageController::class)->middleware('auth');

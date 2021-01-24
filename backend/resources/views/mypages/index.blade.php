@@ -16,18 +16,27 @@
       </ul>
     </div>
   </div>
-  <div class="profile row ml-5 mr-5">
-    <div class="col-2 profile-picture">
-      <img src="..." class="rounded mx-auto d-block" alt="ユーザー画像表示欄">
+  <div class="profile row ml-5 mr-5 mb-3">
+    <div class="col-4 profile-picture">
+      @if($user->image_path != null)
+        <img src="{{ asset('storage/'.$user->image_path) }}" class="img-thumbnail" alt="プロフィール画像">
+      @else
+        <img src="{{ asset('storage/def_image.jpeg') }}" class="img-thumbnail" alt="デフォルトプロフィール画像">
+      @endif
     </div>
-    <div class="col-10 profile-list">
+    <div class="col-8 profile-list">
       <ul class="list-group">
         <li class="list-group-item">ニックネーム：{{ $user->name }}</li>
         <li class="list-group-item">メールアドレス：{{ $user->email }}</li>
         <li class="list-group-item">登録日：{{ $user->created_at }}</li>
-        <li class="list-group-item">投稿数</li>
-        <li class="list-group-item">最終ログイン日</li>
+        <!-- <li class="list-group-item">投稿数</li>
+        <li class="list-group-item">最終ログイン日</li> -->
       </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3 ml-auto">
+    <a href="{{ route('mypage.edit', ['mypage' => $user->id]) }}"class="btn btn-primary" aria-current="page">ユーザー情報編集</a>
     </div>
   </div>
   <div class="Post ml-5 mr-5 mt-5">
