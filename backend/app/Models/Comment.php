@@ -18,4 +18,9 @@ class Comment extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function questions()
+    {
+        return $this->belongsToMany(Question::class);
+    }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Question;
 use App\Models\Workbook;
+use App\Models\Comment;
 use App\Models\Question_workbook;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -161,6 +162,29 @@ class QuestionController extends Controller
       } else {
         $question->update(["status_num" => 3]);
       }
+  }
+
+  /**
+   * Remove the specified resource from storage.
+   *
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+  public function comment(Request $request)
+  {
+      $validated = $request->validate([
+        'comment_body' => ['bail', 'required', 'max:500'],
+      ]);
+      $question = Question::find($request->question_id);
+      $comment = new Comment;
+      $comment->body = $request->comment_body;
+      $comment->user_id = Auth::user()->id;
+      $comment->save();
+
+      $question->comments()->attach(
+        ['question_id' => $question->id],
+        ['comment_id' => $comment->id],
+      );
   }
 
   /**
