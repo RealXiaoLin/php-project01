@@ -130,7 +130,7 @@
           <div class="col-12 p-0">
             <ul class="list-group list-group-flush">
               @foreach($question->comments as $comment)
-              <li class="list-group-item">{{ $comment->body }}</li>
+              <li class="list-group-item" id="comment">{{ $comment->body }}</li>
               @endforeach
             </ul>
           </div>
@@ -155,8 +155,14 @@
           url: "/question/comment",
           headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
           data: { 'comment_body': $comment_body, 'question_id': $question_id },
-        });
+          dataType: 'json',
+        }).done(function(data){
+          $("#comment").text(data);
+        }).fail(function(XMLHttpRequest, textStatus, errorThrown){
+            alert(errorThrown);
+        })
       })
+
     </script>
     <!-- ajax -->
   @endforeach
