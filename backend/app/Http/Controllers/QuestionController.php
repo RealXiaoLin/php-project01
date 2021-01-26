@@ -185,6 +185,8 @@ class QuestionController extends Controller
         ['question_id' => $question->id],
         ['comment_id' => $comment->id],
       );
+
+      return response()->json($comment->body);
   }
 
   /**
