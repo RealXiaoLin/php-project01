@@ -128,9 +128,9 @@
         <h3>MEMO</h3>
         <div class="row border">
           <div class="col-12 p-0">
-            <ul class="list-group list-group-flush">
+            <ul class="list-group list-group-flush" id="comment">
               @foreach($question->comments as $comment)
-              <li class="list-group-item" id="comment">{{ $comment->body }}</li>
+              <li class="list-group-item">{{ $comment->body }}</li>
               @endforeach
             </ul>
           </div>
@@ -157,12 +157,12 @@
           data: { 'comment_body': $comment_body, 'question_id': $question_id },
           dataType: 'json',
         }).done(function(data){
-          $("#comment").text(data);
+          
+          $('#comment').append(`<li class="list-group-item">${data}</li>`);
         }).fail(function(XMLHttpRequest, textStatus, errorThrown){
             alert(errorThrown);
         })
       })
-
     </script>
     <!-- ajax -->
   @endforeach
