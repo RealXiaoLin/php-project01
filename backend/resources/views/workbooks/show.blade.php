@@ -157,7 +157,8 @@
           data: { 'comment_body': $comment_body, 'question_id': $question_id },
           dataType: 'json',
         }).done(function(data){
-          
+          $obj = document.getElementById('comment-form');
+          $obj.value = '';
           $('#comment').append(`<li class="list-group-item">${data}</li>`);
         }).fail(function(XMLHttpRequest, textStatus, errorThrown){
             alert(errorThrown);
