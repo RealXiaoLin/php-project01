@@ -34,6 +34,7 @@ use App\Http\Controllers\QuestionController;
 Route::resource('/question',  QuestionController::class)->middleware('auth');
 Route::post('/question/choice',  [QuestionController::class, 'choice'])->middleware('auth');
 Route::post('/question/comment',  [QuestionController::class, 'comment'])->middleware('auth');
+Route::delete('/question/comment/{question}',  [QuestionController::class, 'comment'])->middleware('auth');
 Route::post('/question/search',  [QuestionController::class, 'search'])->name('question.search')->middleware('auth');
 Route::get('/unanswered',  [QuestionController::class, 'unanswered'])->name('question.unanswered')->middleware('auth');
 Route::get('/select/{question}',  [QuestionController::class, 'select'])->name('question.select')->middleware('auth');
