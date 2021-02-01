@@ -28,11 +28,11 @@
     <div class="question row">
       <div class="col-8 mx-auto border">
         <div class="row question-num">
-          <div class="col-8 mt-4">
+          <div class="col-sm-8 col-xs-12 mt-4">
             <p class="question-id p-0 m-0">問題ID：{{ $question->id }}</p>
             <p class="p-0 m-0">出題番号：{{ $questions->currentPage() }}</p>
           </div>
-          <div class="col-4 mt-4">
+          <div class="col-sm-4 col-xs-12 mt-4">
             @if($question->status_num == 1)
               <p class="p-0 m-0 text-end">前回のステータス：<span class="btn btn-light pl-1 pr-1 pt-0 pb-0 m-0">未回答</span></p>
             @elseif($question->status_num == 2)
@@ -124,7 +124,7 @@
       </div>
     </div>
     <div class="next-pre-btn row mt-3 mb-5">
-      <div class="col-8 mx-auto d-flex justify-content-between">
+      <div class="col-sm-8 col-xs-12 mx-auto d-flex justify-content-between">
       @if ($questions->onFirstPage())
         <button type="button" class="btn btn-link"></button>
       @else
@@ -144,7 +144,14 @@
           <div class="col-12 p-0">
             <ul class="list-group list-group-flush" id="comment">
               @foreach($question->comments as $comment)
-              <li class="list-group-item">{{ $comment->body }}</li>
+              <li class="list-group-item">
+                <div class="row p-0">
+                  <div class="col-sm-11 col-xs-12">
+                    {{ $comment->body }}
+                  </div>
+                  <button type="button" class="btn btn-primary col-sm-1 col-xs-12" id="answer-btn">削除</button>
+                </div>
+              </li>
               @endforeach
             </ul>
           </div>
