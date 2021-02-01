@@ -186,7 +186,9 @@ class QuestionController extends Controller
         ['comment_id' => $comment->id],
       );
 
-      return response()->json($comment->body);
+      $comment_data = [];
+      $comment_data = [$comment->body, $comment->id];
+      return response()->json($comment_data);
   }
 
   /**
@@ -240,5 +242,17 @@ class QuestionController extends Controller
   public function select($id)
   {
     return view('questions.select', ['id' => $id]);
+  }
+
+  /**
+   * Remove the specified resource from storage.
+   *
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+  public function deleteComment(Request $request)
+  {
+    Comment::find($request->comment_id)->delete();
+    return response()->json("success");
   }
 }
