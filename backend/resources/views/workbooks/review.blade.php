@@ -91,8 +91,22 @@
         <div class="answer-body row p-3">
           <p>回答</p>
           <div class="col-12">
+            <!-- 回答の内容を取得 -->
+            <?php
+              $ary = [];
+              $ary[] = $question->choice_1;
+              $ary[] = $question->choice_2;
+              if ($question->choice_3 != null){
+                $ary[] = $question->choice_3;
+              };
+              if ($question->choice_4 != null){
+                $ary[] = $question->choice_4;
+              };
+              $answer_title = $ary[$question->answer_choice];
+            ?>
+            <!-- 回答の内容を取得 -->
             <ul class="list-group list-group-flush pl-3 pr-3">
-              <li class="list-group-item border">{{ $question->answer_choice }}</li>
+              <li class="list-group-item border">{{ $answer_title }}</li>
             </ul>
           </div>
         </div>
