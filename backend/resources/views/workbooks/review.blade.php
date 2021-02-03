@@ -132,6 +132,86 @@
     @endif
     </div>
   </div>
+      <div class="comments-log row">
+      <div class="col-8 mx-auto">
+        <h3>MEMO</h3>
+        <div class="row border">
+          <div class="col-12 p-0">
+            <ul class="list-group list-group-flush" id="comment">
+              @foreach($question->comments as $comment)
+              <li class="list-group-item" id="comment-area-{{$comment->id}}">
+                <div class="row p-0">
+                  <div class="col-sm-11 col-xs-12">
+                    {{ $comment->body }}
+                  </div>
+                  <button type="button" class="btn btn-primary col-sm-1 col-xs-12" id="delete-btn-{{$comment->id}}">削除</button>
+                </div>
+              </li>
+              <!-- ajax -->
+              <script>
+                $('#delete-btn-{{$comment->id}}').on('click', function () {
+                  $comment_id = {{ $comment->id }};
+                  console.log($comment_id);
+                  $.ajax({
+                    type: "POST",
+                    url: "/question/comment/delete",
+                    headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                    data: { 'comment_id': $comment_id },
+                    dataType: 'json',
+                  }).done(function(data){
+                    $('li').remove("#comment-area-{{$comment->id}}");
+                  }).fail(function(XMLHttpRequest, textStatus, errorThrown){
+                    alert(errorThrown);
+                  })
+                })
+              </script>
+              <!-- ajax -->
+              @endforeach
+            </ul>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-10 col-xs-12 p-0">
+              <input type="text" name="comment_body" class="form-control" id="comment-form">
+          </div>
+          <button type="button" class="btn btn-primary col-sm-2 col-xs-12 mb-5 mx-auto" id="comment-btn">メモする</button>
+        </div>
+      </div>
+    </div>
+    <div class="comment-btn row mt-5">
+    </div>
+    <!-- ajax -->
+    <script>
+      $('#comment-btn').on('click', function () {
+        $question_id = {{ $question->id }};
+        $comment_body = $('#comment-form').val();
+        $.ajax({
+          type: "POST",
+          url: "/question/comment",
+          headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+          data: { 'comment_body': $comment_body, 'question_id': $question_id },
+          dataType: 'json',
+        }).done(function(data){
+          $obj = document.getElementById('comment-form');
+          $obj.value = '';
+          $('#comment').append(
+            `
+            <li class="list-group-item" id="comment-area-${data[1]}">
+              <div class="row p-0">
+                <div class="col-sm-11 col-xs-12">
+                  ${data[0]}
+                </div>
+                <button type="button" class="btn btn-primary col-sm-1 col-xs-12" id="delete-btn-${data[1]}">削除</button>
+              </div>
+            </li>
+            `
+            );
+        }).fail(function(XMLHttpRequest, textStatus, errorThrown){
+            alert(errorThrown);
+        })
+      })
+    </script>
+    <!-- ajax -->
   @endforeach
   @endisset
 </div>
